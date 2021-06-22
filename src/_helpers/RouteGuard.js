@@ -11,7 +11,7 @@ const RouteGuard = ({component: RouteComponent, ...rest}) => {
                 if (user) {
                     return <RouteComponent {...props} />
                 } else {
-                    <Redirect to={'/login'} />
+                    return <Redirect to={'/login'} />
                 }
             }}
         />

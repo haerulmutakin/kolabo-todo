@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { auth } from '../../firebase.config';
 // import AuthProvider from '../../provider/AuthProvider';
+import { AuthContext } from '../../provider/AuthProvider';
 import './Login.scss';
 
 
 const Login = ({history}) => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
+    const user = useContext(AuthContext);
 
     // const user = useContext(AuthProvider);
     // console.log('ini user', user);
@@ -31,11 +34,14 @@ const Login = ({history}) => {
                 uid: auth.user.uid,
                 email: auth.user.email
             }
-            localStorage.setItem('authData', JSON.stringify(userData));
+            console.log('berhasil login', userData);
             history.push('/');
         }).catch( err => {
             console.log(err);
         });
+    }
+    if (user) {
+        return <Redirect to={'/'} />
     }
     return (
         <div className="login-container">
