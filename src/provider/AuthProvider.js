@@ -10,9 +10,10 @@ class AuthProvider extends React.Component {
     componentDidMount = () => {
         auth.onAuthStateChanged(userAuth => {
             const userDetail = {
+                uid: userAuth.uid,
                 email: userAuth.email,
             }
-            this.setState({ user: userDetail}, () => console.log(this.state.user));
+            this.setState({ user: userDetail});
           });
     }
     render() {
