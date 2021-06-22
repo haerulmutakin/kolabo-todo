@@ -4,7 +4,7 @@ import { auth } from '../../firebase.config';
 import './Login.scss';
 
 
-const Login = () => {
+const Login = ({history}) => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
@@ -21,12 +21,18 @@ const Login = () => {
     //         console.log(err);
     //     });
     // }
-    const doLogin = () => {
+    const doLogin = (e) => {
+        e.preventDefault();
         console.log(email, password);
         auth.signInWithEmailAndPassword(
             email, password
-        ).then( user => {
-            console.log(user);
+        ).then( auth => {
+            const userData = {
+                uid: auth.user.uid,
+                email: auth.user.email
+            }
+            localStorage.setItem('authData', JSON.stringify(userData));
+            history.push('/');
         }).catch( err => {
             console.log(err);
         });
