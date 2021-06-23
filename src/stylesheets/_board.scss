@@ -1,5 +1,4 @@
 .board {
-    // border: 1px solid #bdbdbd;
     .board-header {
         height: 40px;
         border-width: 0 0 3px 0;
@@ -10,6 +9,7 @@
         align-items: center;
         justify-content: space-between;
         .board-title-container {
+            font-weight: bold;
             width: 100px !important;
         }
     }

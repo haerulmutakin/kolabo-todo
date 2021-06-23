@@ -1,15 +1,48 @@
 .task-container {
-    padding: 10px;
     border: 1px solid #e5e5e5;
     border-radius: 4px;
     margin: 10px 0;
+    position: relative;
+}
+
+.task-detail {
+    padding: 10px;
+    cursor: pointer;
 }
 
 .task-input {
     border: 1px solid #e5e5e5;
-    margin: 10px 0 0 0;
     border-radius: 4px;
     width: 100%;
     resize: none;
     padding: 5px;
+}
+
+
+.edit-modal {
+    width: 100%;
+    border-radius: 4px;
+    background: #ffffff;
+    z-index: 120;
+    position: absolute;
+    top: 0;
+}
+
+.edit-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5px 10px 5px;
+}
+
+.edit-backdrop {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 100;
+    opacity: .5;
 }
