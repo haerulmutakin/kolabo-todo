@@ -1,0 +1,17 @@
+.board {
+    // border: 1px solid #bdbdbd;
+    .board-header {
+        height: 40px;
+        border-width: 2px 1px 1px 1px;
+        border-style: solid;
+        border-color: #e5e5e5;
+        border-radius: 4px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .board-content {
+        padding: 20px 0;
+    }
+}

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,200&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    // color: #4D4D4D;
+    // background-color: #f1f2f5;
+  }
+  
+  p {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  @import './grid.scss';
+  @import './card.scss';
+  @import './login';
+  @import './board';
+  @import './task';
+  // @import './button.scss';
+  // @import './form.scss';

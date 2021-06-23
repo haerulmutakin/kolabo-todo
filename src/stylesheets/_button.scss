@@ -1,0 +1,25 @@
+.bsbtn {
+    padding: 0 10px;
+    height: 35px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+
+    &.bsbtn-default {
+        background: transparent;
+        border-color: blue;
+    }
+    &.bsbtn-primary {
+        background-color: blue;
+        color: #ffffff;
+        border-color:blue;
+    }
+}
+
+.bsbtn-group {
+    text-align: center;
+    button {
+        min-width: 120px;
+        margin-right: 8px;
+    }
+}
