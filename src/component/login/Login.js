@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { ButtonGroup, Button, Form, FormGroup, FormControl, ControlLabel } from 'rsuite';
 import { auth } from '../../_firebase-conf/firebase.config';
 import { AuthContext } from '../../_provider/AuthProvider';
 import './Login.scss';
@@ -25,28 +26,37 @@ const Login = ({history}) => {
     // }
     const doLogin = (e) => {
         e.preventDefault();
-        console.log(email, password);
         auth.signInWithEmailAndPassword(
             email, password
         ).then( auth => {
-            const userData = {
-                uid: auth.user.uid,
-                email: auth.user.email
-            }
-            console.log('berhasil login', userData);
             history.push('/');
         }).catch( err => {
             console.log(err);
         });
     }
+
     if (user) {
         return <Redirect to={'/'} />
     }
     return (
         <div className="login-container">
-            <input type="email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" onChange={(e) => setPassword(e.target.value)}/>
-            <button onClick={doLogin}>Login</button>
+            <h2>Kolabo Todo App</h2>
+            <Form fluid className="login-box">
+                <FormGroup>
+                    <ControlLabel>Email</ControlLabel>
+                    <FormControl name="email" type="email" onChange={setEmail}/>
+                </FormGroup>
+                <FormGroup>
+                    <ControlLabel>Password</ControlLabel>
+                    <FormControl name="password" type="password" onChange={setPassword}/>
+                </FormGroup>
+                <FormGroup>
+                <ButtonGroup justified>
+                    <Button type="submit" appearance="primary" onClick={doLogin}>Sign In</Button>
+                </ButtonGroup>
+                </FormGroup>
+            </Form>
+            <p>Don't have account? Sign Up</p>
         </div>
     )
 }
