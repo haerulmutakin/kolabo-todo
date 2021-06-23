@@ -27,7 +27,6 @@ const Board = ({
               title: e.target.value
           }
           setTasks([...tasks, newEl]);
-          console.log(tasks);
           addTodo(newEl);
           setNewTaskValue('');
         }
@@ -66,7 +65,6 @@ const Board = ({
             .catch(err => {
                 console.log(err);
             })
-        console.log(updateTask);
     }
 
     const handleActionEditTask = (index, item) => {
