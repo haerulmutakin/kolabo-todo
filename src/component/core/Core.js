@@ -5,7 +5,7 @@ import Header from '../common/Header';
 import Board from '../board/Board';
 
 const Core = () => {
-    const taskRef = firebaseDB.firestore().collection('coba');
+    const taskRef = firebaseDB.firestore().collection('tasks');
     const [openTasks, setOpenTasks] = useState([]);
     const [progress, setProgress] = useState([]);
     const [doneTasks, setDoneTasks] = useState([]);
@@ -23,10 +23,10 @@ const Core = () => {
                 result.forEach(item => {
                     data.push(item.data())
                 });
-                setOpenTasks(data.filter(item => item.status === 'open'));
-                setProgress(data.filter(item => item.status === 'progress'));
-                setDoneTasks(data.filter(item => item.status === 'done'));
-                setCanceledTasks(data.filter(item => item.status === 'canceled'));
+                setOpenTasks(data.filter(item => item.status === 0));
+                setProgress(data.filter(item => item.status === 1));
+                setDoneTasks(data.filter(item => item.status === 2));
+                setCanceledTasks(data.filter(item => item.status === 3));
             });
     }
 
