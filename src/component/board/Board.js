@@ -13,7 +13,7 @@ const Board = ({
     tasksData
 }) => {
     const userData = useContext(AuthContext);
-    const tasksRef = firebaseDB.firestore().collection('coba');
+    const tasksRef = firebaseDB.firestore().collection('tasks');
     const [ tasks, setTasks ] = useState([]);
     const [ newTaskValue, setNewTaskValue ] = useState('');
     const [ showNewTaskForm, setShowNewTaskForm ] = useState(false);
@@ -37,8 +37,7 @@ const Board = ({
     const addTodo = (newTask) => {
         const payload = {
             id: uuidv4(),
-            status: 'open',
-            priority: 'normal',
+            status: 0,
             title: newTask.title,
             userId: userData.uid,
             createdAt: firebaseDB.firestore.FieldValue.serverTimestamp()
@@ -70,8 +69,7 @@ const Board = ({
                     return (
                         <Task 
                             key={index} 
-                            taskData={item} 
-                            taskEditable={allowEditTask}/>
+                            taskData={item} />
                     )
                 })}
                 {showNewTaskForm && 
