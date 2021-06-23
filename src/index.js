@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+// import './index.scss';
+import './stylesheets/style.scss';
+import 'rsuite/dist/styles/rsuite-default.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
