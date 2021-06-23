@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Button, IconButton, Icon } from 'rsuite';
+import { IconButton, Icon } from 'rsuite';
 import firebaseDB from '../../_firebase-conf/firebase.config';
 import { AuthContext } from '../../_provider/AuthProvider';
+import Task from '../task/Task';
+
+
 const Board = ({
     title,
     allowNewTask = false,
+    allowEditTask = true,
     tasksData
 }) => {
     const userData = useContext(AuthContext);
     const tasksRef = firebaseDB.firestore().collection('coba');
     const [ tasks, setTasks ] = useState([]);
-    const [ editableTaskIndex, setEditableTaskIndex ] = useState(-1);
-    const [ editableTaskValue, setEditableTaskValue ] = useState('');
     const [ newTaskValue, setNewTaskValue ] = useState('');
     const [ showNewTaskForm, setShowNewTaskForm ] = useState(false);
 
@@ -32,15 +34,6 @@ const Board = ({
         }
     }
 
-    const handleTaskUpdateKeyDown = (e, item) => {
-        if(e.keyCode === 13 && e.shiftKey === false) {
-            e.preventDefault();
-            item.title = e.target.value;
-            setEditableTaskIndex(-1);
-            updateTodo(item);
-          }
-    }
-
     const addTodo = (newTask) => {
         const payload = {
             id: uuidv4(),
@@ -58,19 +51,6 @@ const Board = ({
         });
     }
 
-    const updateTodo = (updateTask) => {
-        tasksRef
-            .doc(updateTask.id)
-            .update(updateTask)
-            .catch(err => {
-                console.log(err);
-            })
-    }
-
-    const handleActionEditTask = (index, item) => {
-        setEditableTaskValue(item.title);
-        setEditableTaskIndex(index);
-    }
 
     const handleNewTask = (e) => {
         e.preventDefault();
@@ -88,24 +68,10 @@ const Board = ({
             <div className="board-content">
                 {tasks.map((item, index) => {
                     return (
-                        <div key={index} className="all-container">
-                            {editableTaskIndex === index ? 
-                                <textarea 
-                                    autoFocus 
-                                    placeholder="Enter task name..." 
-                                    value={editableTaskValue} 
-                                    className="task-input" 
-                                    onChange={(e) => setEditableTaskValue(e.target.value)} 
-                                    onKeyDown={(e) => handleTaskUpdateKeyDown(e, item)} 
-                                ></textarea>
-                                : 
-                                <div key={index} className="task-container">
-                                    {item.title}
-                                    <Button onClick={() => handleActionEditTask(index, item)}>Edit</Button>
-                                </div> 
-
-                            }
-                        </div>
+                        <Task 
+                            key={index} 
+                            taskData={item} 
+                            taskEditable={allowEditTask}/>
                     )
                 })}
                 {showNewTaskForm && 

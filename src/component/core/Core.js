@@ -52,6 +52,7 @@ const Core = () => {
                     <Board
                         title="DONE"
                         tasksData={doneTasks}
+                        allowEditTask={false}
                     />
                 </Col>
                 <Col md={6}>
