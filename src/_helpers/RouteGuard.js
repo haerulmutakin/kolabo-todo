@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { AuthContext } from '../provider/AuthProvider';
+import { AuthContext } from '../_provider/AuthProvider';
 
 const RouteGuard = ({component: RouteComponent, ...rest}) => {
     const user = useContext(AuthContext);

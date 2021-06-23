@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { auth } from "../firebase.config";
+import { auth } from "../_firebase-conf/firebase.config";
 
 export const AuthContext = createContext({ user: null });
 class AuthProvider extends React.Component {

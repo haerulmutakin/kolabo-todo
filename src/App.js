@@ -3,7 +3,7 @@ import './App.scss';
 import Login from './component/login/Login';
 import Core from './component/core/Core';
 import RouteGuard from './_helpers/RouteGuard';
-import AuthProvider from './provider/AuthProvider';
+import AuthProvider from './_provider/AuthProvider';
 
 function App() {
   return (
