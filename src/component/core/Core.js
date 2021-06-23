@@ -6,19 +6,29 @@ import Board from '../board/Board';
 
 const Core = () => {
     const taskRef = firebaseDB.firestore().collection('coba');
-    const [task, setTask] = useState([]);
+    const [openTasks, setOpenTasks] = useState([]);
+    const [progress, setProgress] = useState([]);
+    const [doneTasks, setDoneTasks] = useState([]);
+    const [canceledTasks, setCanceledTasks] = useState([]);
 
     useEffect(() => {
+        getTasks()
+    }, []);
+
+    const getTasks = () => {
         taskRef
             .orderBy('createdAt', 'asc')
-            .onSnapshot((resule) => {
+            .onSnapshot((result) => {
                 const data = [];
-                resule.forEach(item => {
+                result.forEach(item => {
                     data.push(item.data())
                 });
-                setTask(data);
+                setOpenTasks(data.filter(item => item.status === 'open'));
+                setProgress(data.filter(item => item.status === 'progress'));
+                setDoneTasks(data.filter(item => item.status === 'done'));
+                setCanceledTasks(data.filter(item => item.status === 'canceled'));
             });
-    }, []);
+    }
 
 
     return (
@@ -29,25 +39,25 @@ const Core = () => {
                     <Board
                         title="TODO"
                         allowNewTask={true}
-                        tasksData={task}
+                        tasksData={openTasks}
                     />
                 </Col>
                 <Col md={6}>
                     <Board
                         title="PROGRESS"
-                        tasksData={[]}
+                        tasksData={progress}
                     />
                 </Col>
                 <Col md={6}>
                     <Board
                         title="DONE"
-                        tasksData={[]}
+                        tasksData={doneTasks}
                     />
                 </Col>
                 <Col md={6}>
                     <Board
                         title="CANCELED"
-                        tasksData={[]}
+                        tasksData={canceledTasks}
                     />
                 </Col>
             </Grid>
