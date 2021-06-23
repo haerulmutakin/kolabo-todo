@@ -1,13 +1,28 @@
-import React, {useState } from 'react';
+import React, {useState, useContext, useEffect } from 'react';
 import { Grid, Col, Icon, IconButton } from 'rsuite';
 import Header from '../common/Header';
+import { AuthContext } from '../../_provider/AuthProvider';
+import firebaseDB from '../../_firebase-conf/firebase.config';
 
 const Core = () => {
+    const userData = useContext(AuthContext);
+    const tasknya = firebaseDB.firestore().collection('coba');
     const [newTask, setNewTask] = useState('');
     const [showNewTask, setShowNewTask] = useState(false);
     const [task, setTask] = useState(
         []
     );
+
+    useEffect(() => {
+        tasknya.onSnapshot((resule) => {
+            const data = [];
+            resule.forEach(item => {
+                data.push(item.data())
+            });
+            console.log(data);
+            setTask(data);
+        });
+    }, []);
 
     const onEnterPress = (e) => {
         if(e.keyCode === 13 && e.shiftKey === false) {
@@ -16,8 +31,25 @@ const Core = () => {
               title: e.target.value
           }
           setTask([...task, newEl]);
+          addTodo(newEl);
           setNewTask('');
         }
+    }
+
+    const addTodo = (newTask) => {
+        const payload = {
+            status: 'open',
+            priority: 'normal',
+            title: newTask.title,
+            userId: userData.uid,
+        }
+        console.log(payload);
+        tasknya
+        .doc()
+        .set(payload)
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     const newTasHandler = (e) => {
