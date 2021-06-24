@@ -11,7 +11,8 @@ const Board = ({
     title,
     allowNewTask = false,
     allowEditTask = false,
-    tasksData
+    tasksData,
+    theme
 }) => {
     const userData = useContext(AuthContext);
     const tasksRef = firebaseDB.firestore().collection('tasks');
@@ -57,13 +58,17 @@ const Board = ({
         setShowNewTaskForm(true);
     }
 
+    const boardStyle = {
+        borderColor: theme
+    }
+
     return (
         <div className="board">
-            <div className="board-header">
+            <div className="board-header" style={boardStyle}>
                 <div className="board-title-container">
                     <p>{title}</p>
                 </div>
-                {allowNewTask && <div><Icon icon="data-increase" /></div>}
+                {allowNewTask && <div className="add-task-label" onClick={handleNewTask}><Icon icon="data-increase" /></div>}
             </div>
             <div className="board-content">
                 {tasks.map((item, index) => {

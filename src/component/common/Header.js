@@ -19,7 +19,7 @@ const Header = () => {
         <div className="page-header">
             <Navbar appearance="default">
                 <Navbar.Header>
-                    <a href="/" className="navbar-brand logo">RSUITE</a>
+                    <h3 className="navbar-brand logo">TODO</h3>
                 </Navbar.Header>
                 <Navbar.Body>
                     <Nav pullRight>

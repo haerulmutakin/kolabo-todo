@@ -1,12 +1,14 @@
 .task-container {
-    border: 1px solid #e5e5e5;
-    border-radius: 4px;
+    // border: 1px solid #ffffff;
     margin: 10px 0;
     position: relative;
 }
 
 .task-detail {
     padding: 10px;
+    border-radius: 4px;
+    background: #ffffff;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,.06);
     &.editable {
         cursor: pointer;
     }

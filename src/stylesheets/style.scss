@@ -6,12 +6,25 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     // color: #4D4D4D;
-    // background-color: #f1f2f5;
+  }
+
+  .core-container {
+    background-color: #f1f2f5;
   }
   
   p {
     font-size: 13px;
     margin: 0;
+  }
+
+  .rs-navbar {
+    padding: 0 10px;
+    border-bottom: 1px solid #e9ebf0;
+    background-color: #ffffff !important;
+  }
+  .rs-navbar-header {
+    display: flex !important;
+    align-items: center
   }
 
   @import './grid.scss';

@@ -32,7 +32,7 @@ const Core = () => {
 
 
     return (
-        <div>
+        <div className="core-container">
             <Header />
             <Grid fluid>
                 <Col md={6}>
@@ -41,6 +41,7 @@ const Core = () => {
                         allowNewTask={true}
                         allowEditTask={true}
                         tasksData={openTasks}
+                        theme='#2296f3'
                     />
                 </Col>
                 <Col md={6}>
@@ -48,6 +49,7 @@ const Core = () => {
                         title="PROGRESS"
                         allowEditTask={true}
                         tasksData={progress}
+                        theme='#ffca28'
                     />
                 </Col>
                 <Col md={6}>
@@ -55,12 +57,14 @@ const Core = () => {
                         title="DONE"
                         tasksData={doneTasks}
                         allowEditTask={true}
+                        theme='#4caf50'
                     />
                 </Col>
                 <Col md={6}>
                     <Board
                         title="CANCELED"
                         tasksData={canceledTasks}
+                        theme='#272c36'
                     />
                 </Col>
             </Grid>
