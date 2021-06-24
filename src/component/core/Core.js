@@ -1,10 +1,12 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext } from 'react';
 import { Grid, Col} from 'rsuite';
 import firebaseDB from '../../_firebase-conf/firebase.config';
 import Header from '../common/Header';
 import Board from '../board/Board';
+import { AuthContext } from '../../_provider/AuthProvider';
 
 const Core = () => {
+    const currentUser = useContext(AuthContext);
     const taskRef = firebaseDB.firestore().collection('tasks');
     const [openTasks, setOpenTasks] = useState([]);
     const [progress, setProgress] = useState([]);
@@ -17,7 +19,7 @@ const Core = () => {
 
     const getTasks = () => {
         taskRef
-            // .where('status', '==', 2)
+            .where('userId', '==', currentUser.uid)
             .orderBy('createdAt', 'asc')
             .onSnapshot((result) => {
                 const data = [];
