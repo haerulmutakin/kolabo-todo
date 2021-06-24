@@ -1,22 +1,25 @@
 import React, { createContext } from 'react';
 import { auth } from "../_firebase-conf/firebase.config";
+import { Loader } from 'rsuite';
 
 export const AuthContext = createContext({ user: null });
 class AuthProvider extends React.Component {
     state = {
-        user: null
+        user: null,
+        loading: true
     }
 
     componentDidMount = () => {
         auth.onAuthStateChanged(userAuth => {
+          console.log(userAuth);
           if (userAuth) {
             const userDetail = {
               uid: userAuth?.uid,
               email: userAuth?.email,
             }
-            this.setState({ user: userDetail});
+            this.setState({ user: userDetail, loading: false});
           } else {
-            this.setState({user: null})
+            this.setState({user: null, loading: false})
           }
             
           });
@@ -24,7 +27,13 @@ class AuthProvider extends React.Component {
     render() {
         return (
           <AuthContext.Provider value={this.state.user}>
-            {this.props.children}
+            {this.state.loading === false ? <div>
+              {this.props.children}
+            </div>
+            :
+            <div className="loader-container"><Loader vertical size="lg" content="Loading..." /></div>
+            }
+            
           </AuthContext.Provider>
         );
       }
