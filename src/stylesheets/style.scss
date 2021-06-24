@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,200&display=swap');
 
-body {
+  body {
     margin: 0;
     font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    // color: #4D4D4D;
   }
 
   .core-container {
@@ -18,9 +17,9 @@ body {
   }
 
 
-.page-header {
-  margin-bottom: 20px;
-}
+  .page-header {
+    margin-bottom: 20px;
+  }
 
   .rs-navbar {
     padding: 0 10px;

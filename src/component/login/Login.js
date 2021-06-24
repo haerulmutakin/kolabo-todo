@@ -3,14 +3,13 @@ import { Redirect } from 'react-router-dom';
 import { ButtonGroup, Button, Form, FormGroup, FormControl, ControlLabel, Alert } from 'rsuite';
 import { auth } from '../../_firebase-conf/firebase.config';
 import { AuthContext } from '../../_provider/AuthProvider';
-import './Login.scss';
 
 
 const Login = ({history}) => {
     const [email, setEmail] = useState(null);
     const [ signinMode, setSigninMode ] = useState(true);
     const [password, setPassword] = useState(null);
-    const user = useContext(AuthContext);
+    const currentUser = useContext(AuthContext);
 
     const doRegister = () => {
         console.log(email, password);
@@ -36,7 +35,7 @@ const Login = ({history}) => {
         setSigninMode(!mode);
     }
 
-    if (user) {
+    if (currentUser) {
         return <Redirect to={'/'} />
     }
     return (

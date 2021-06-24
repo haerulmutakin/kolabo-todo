@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { Icon, Button } from 'rsuite';
 import firebaseDB from '../../_firebase-conf/firebase.config';
 import { AuthContext } from '../../_provider/AuthProvider';
-import Task from './Task';
 import Whisper from '../shared/Whisper';
+import Task from './Task';
 
 
 const Board = ({
@@ -52,7 +52,6 @@ const Board = ({
         });
     }
 
-
     const handleNewTask = (e) => {
         e.preventDefault();
         setShowNewTaskForm(true);
@@ -97,9 +96,6 @@ const Board = ({
                 }
                 {allowNewTask && <div className="add-task-container">
                     <Button className="add-button" onClick={handleNewTask}><Icon icon="data-increase" /> New task</Button>
-                    {/* <IconButton className="add-button"  onClick={handleNewTask}  icon={<Icon icon="data-increase" />} placement="left">
-                        New task
-                    </IconButton> */}
                 </div>}
                 
             </div>
