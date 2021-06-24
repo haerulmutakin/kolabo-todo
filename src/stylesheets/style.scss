@@ -19,8 +19,8 @@ body {
 
   .rs-navbar {
     padding: 0 10px;
-    border-bottom: 1px solid #e9ebf0;
     background-color: #ffffff !important;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,.06);
   }
   .rs-navbar-header {
     display: flex !important;
@@ -32,6 +32,4 @@ body {
   @import './login';
   @import './board';
   @import './task';
-  @import './whisper'
-  // @import './button.scss';
-  // @import './form.scss';
+  @import './whisper';
