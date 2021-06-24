@@ -3,8 +3,24 @@
     margin: 0 auto;
 }
 
+.login-title {
+    text-align: center;
+    margin: 20px 0;
+}
+
 .login-box {
     border: 1px solid #e5e5e5;
     border-radius: 4px;
     padding: 20px;
+}
+
+.signup-label {
+    margin-top: 20px;
+    text-align: center;
+    span {
+        cursor: pointer;
+        &:hover {
+            color: blueviolet;
+        }
+    }
 }
