@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.scss';
-import Login from './component/login/Login';
-import Core from './component/core/Core';
 import RouteGuard from './_helpers/RouteGuard';
 import AuthProvider from './_provider/AuthProvider';
+import Login from './component/login/Login';
+import Core from './component/core/Core';
 
 function App() {
   return (

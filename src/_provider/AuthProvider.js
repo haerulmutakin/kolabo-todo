@@ -11,7 +11,6 @@ class AuthProvider extends React.Component {
 
     componentDidMount = () => {
         auth.onAuthStateChanged(userAuth => {
-          console.log(userAuth);
           if (userAuth) {
             const userDetail = {
               uid: userAuth?.uid,

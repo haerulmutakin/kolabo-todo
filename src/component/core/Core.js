@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext } from 'react';
 import { Grid, Col} from 'rsuite';
 import firebaseDB from '../../_firebase-conf/firebase.config';
-import Header from '../common/Header';
-import Board from '../board/Board';
 import { AuthContext } from '../../_provider/AuthProvider';
+import Header from '../common/Header';
+import Board from './Board';
 
 const Core = () => {
     const currentUser = useContext(AuthContext);

@@ -17,6 +17,11 @@ body {
     margin: 0;
   }
 
+
+.page-header {
+  margin-bottom: 20px;
+}
+
   .rs-navbar {
     padding: 0 10px;
     background-color: #ffffff !important;
@@ -38,8 +43,6 @@ body {
     justify-content: center
   }
 
-  @import './grid.scss';
-  @import './card.scss';
   @import './login';
   @import './board';
   @import './task';

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { IconButton, Icon, Button } from 'rsuite';
+import { Icon, Button } from 'rsuite';
 import firebaseDB from '../../_firebase-conf/firebase.config';
 import { AuthContext } from '../../_provider/AuthProvider';
-import Task from '../task/Task';
+import Task from './Task';
 import Whisper from '../shared/Whisper';
 
 
