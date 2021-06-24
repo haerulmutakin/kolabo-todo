@@ -1,0 +1,24 @@
+.whisper-container {
+    position: relative;
+}
+.kol-whisper-inner {
+    width: 100%;
+    border-radius: 4px;
+    background: #ffffff;
+    z-index: 120;
+    position: absolute;
+    top: 0;
+}
+.kol-whisper-outer {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    &.backdrop {
+        background: rgba(0,0,0,.6);
+        opacity: .5;
+    }
+}
