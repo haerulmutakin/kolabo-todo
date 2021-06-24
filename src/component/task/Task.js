@@ -69,7 +69,7 @@ const Task = ({
                 <div >
                     <Whisper backdrop={true} onClose={() => setOverlay(false)}>
                         <textarea 
-                            autoFocus 
+                        autoFocus
                             placeholder="Enter task name..." 
                             value={editableTaskValue} 
                             className="task-input" 
@@ -78,7 +78,11 @@ const Task = ({
                         ></textarea>
                         <div className="edit-action">
                             <Button onClick={() => handleCancel(taskData)} size="sm" color="red">Cancel</Button>
-                            {task.status !== 2 && <Button onClick={() => hadnleNextStep(taskData)} size="sm" color="blue">{nextStepLabel}</Button>}
+                            {task.status !== 2 && <Button 
+                                onClick={() => hadnleNextStep(taskData)} 
+                                size="sm" 
+                                color="blue"
+                                >{nextStepLabel}</Button>}
                             
                         </div>
                     </Whisper>
