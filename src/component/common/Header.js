@@ -2,14 +2,13 @@ import React, {useContext} from 'react';
 import { Navbar, Nav, Dropdown} from 'rsuite';
 import { AuthContext } from './../../_provider/AuthProvider';
 import { auth } from '../../_firebase-conf/firebase.config';
-import { Redirect } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({history}) => {
     const user = useContext(AuthContext);
     const handleLogout = () => {
         auth.signOut()
             .then(() => {
-                return <Redirect to="/" />
+                history.push('/login')
             })
             .catch(err => {
                 console.log(err);
