@@ -28,6 +28,11 @@
         padding: 10px 0;
         height: calc(100vh - 120px);
         overflow-y: auto;
+        margin-bottom: 20px;
+        @media screen and (max-width: 576px) {
+            height: auto;
+            overflow-y: visible;
+        }
     }
 }
 
