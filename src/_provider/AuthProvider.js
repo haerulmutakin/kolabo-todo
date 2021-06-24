@@ -1,12 +1,12 @@
 import React, { createContext } from 'react';
-import { auth } from "../_firebase-conf/firebase.config";
 import { Loader } from 'rsuite';
+import { auth } from "../_firebase-conf/firebase.config";
 
 export const AuthContext = createContext({ user: null });
 class AuthProvider extends React.Component {
     state = {
-        user: null,
-        loading: true
+      user: null,
+      loading: true
     }
 
     componentDidMount = () => {
@@ -19,9 +19,8 @@ class AuthProvider extends React.Component {
             this.setState({ user: userDetail, loading: false});
           } else {
             this.setState({user: null, loading: false})
-          }
-            
-          });
+          }   
+        });
     }
     render() {
         return (
@@ -32,7 +31,6 @@ class AuthProvider extends React.Component {
             :
             <div className="loader-container"><Loader vertical size="lg" content="Loading..." /></div>
             }
-            
           </AuthContext.Provider>
         );
       }
