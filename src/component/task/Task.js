@@ -1,23 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import { Button } from 'rsuite';
 import firebaseDB from '../../_firebase-conf/firebase.config';
+import Whisper from '../shared/Whisper';
 
 
 const Task = ({
-    taskData
+    taskData,
+    editable = true
 }) => {
     const tasksRef = firebaseDB.firestore().collection('tasks');
     const [ task, setTask ] = useState([]);
     const [ editableTaskValue, setEditableTaskValue ] = useState('');
-    const [modal, setModal] = useState(false);
+    const [ overlay, setOverlay] = useState(false);
 
     useEffect(() => {
         setTask(taskData);
     }, [taskData]);
 
     const handleActionEditTask = (e) => {
-        setEditableTaskValue(taskData.title);
-        setModal(true);
+        e.preventDefault();
+        if (editable) {
+            setEditableTaskValue(taskData.title);
+            setOverlay(true);
+        }
     }
 
     const handleTaskUpdateKeyDown = (e, item) => {
@@ -25,7 +30,7 @@ const Task = ({
             e.preventDefault();
             item.title = e.target.value;
             updateTodo(item);
-            setModal(false);
+            setOverlay(false);
           }
     }
 
@@ -41,25 +46,28 @@ const Task = ({
     const handleCancel = (item) => {
         item.status = 3;
         updateTodo(item);
-        setModal(false);
+        setOverlay(false);
     }
 
     const hadnleNextStep = (item) => {
         if (item.status < 3) {
             item.status += 1;
             updateTodo(item);
-            setModal(false);
+            setOverlay(false);
         }
     }
 
+    const taskDetailClass = editable ? 'editable' : '';
+    const nextStepLabel = task.status === 0 ? 'Progress' : 'Done';
+
     return (
         <div className="task-container">
-            <div className="task-detail" onClick={handleActionEditTask}>
+            <div className={"task-detail " + taskDetailClass} onClick={handleActionEditTask}>
                 {task.title}
             </div>
-            {modal && 
-                <div className="coba-modal">
-                    <div className="edit-modal">
+            {overlay && 
+                <div >
+                    <Whisper backdrop={true} onClose={() => setOverlay(false)}>
                         <textarea 
                             autoFocus 
                             placeholder="Enter task name..." 
@@ -70,10 +78,10 @@ const Task = ({
                         ></textarea>
                         <div className="edit-action">
                             <Button onClick={() => handleCancel(taskData)} size="sm" color="red">Cancel</Button>
-                            <Button onClick={() => hadnleNextStep(taskData)} size="sm" color="blue">Progress</Button>
+                            {task.status !== 2 && <Button onClick={() => hadnleNextStep(taskData)} size="sm" color="blue">{nextStepLabel}</Button>}
+                            
                         </div>
-                    </div>
-                    <div className="edit-backdrop" onClick={() => setModal(false)}></div>
+                    </Whisper>
                 </div>
                 }
         </div> 

@@ -4,12 +4,13 @@ import { IconButton, Icon } from 'rsuite';
 import firebaseDB from '../../_firebase-conf/firebase.config';
 import { AuthContext } from '../../_provider/AuthProvider';
 import Task from '../task/Task';
+import Whisper from '../shared/Whisper';
 
 
 const Board = ({
     title,
     allowNewTask = false,
-    allowEditTask = true,
+    allowEditTask = false,
     tasksData
 }) => {
     const userData = useContext(AuthContext);
@@ -25,11 +26,11 @@ const Board = ({
     const handleNewTaskKeyDown = (e) => {
         if(e.keyCode === 13 && e.shiftKey === false) {
           e.preventDefault();
-          const newEl = {
+          const newTask = {
               title: e.target.value
           }
-          setTasks([...tasks, newEl]);
-          addTodo(newEl);
+          setTasks([...tasks, newTask]);
+          addTodo(newTask);
           setNewTaskValue('');
         }
     }
@@ -68,11 +69,14 @@ const Board = ({
                 {tasks.map((item, index) => {
                     return (
                         <Task 
-                            key={index} 
+                            key={index}
+                            editable={allowEditTask}
                             taskData={item} />
                     )
                 })}
                 {showNewTaskForm && 
+                    <div className="whisper-container">
+                        <Whisper title="mengaap" onClose={() => setShowNewTaskForm(false)}>
                             <div className="task-input-container">
                                 <textarea 
                                     autoFocus 
@@ -83,7 +87,9 @@ const Board = ({
                                     onKeyDown={handleNewTaskKeyDown} 
                                 ></textarea>
                             </div>
-                        }
+                        </Whisper>
+                    </div>
+                }
                 {allowNewTask && <div className="add-task-container">
                     <IconButton  onClick={handleNewTask}  icon={<Icon icon="data-increase" />} placement="left">
                         New Task
