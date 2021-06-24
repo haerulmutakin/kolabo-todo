@@ -57,6 +57,11 @@ const Task = ({
         }
     }
 
+    const handleFocus = (e) => {
+        const value = e.target.value;
+        e.target.selectionEnd = value.length;
+    }
+
     const taskDetailClass = editable ? 'editable' : '';
     const nextStepLabel = task.status === 0 ? 'Progress' : 'Done';
 
@@ -68,8 +73,9 @@ const Task = ({
             {overlay && 
                 <div >
                     <Whisper backdrop={true} onClose={() => setOverlay(false)}>
-                        <textarea 
-                        autoFocus
+                        <textarea
+                            autoFocus
+                            onFocus={handleFocus}
                             placeholder="Enter task name..." 
                             value={editableTaskValue} 
                             className="task-input" 
