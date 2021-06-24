@@ -1,12 +1,12 @@
 import firebase from 'firebase';
 
 var firebaseConfig = {
-    apiKey: "AIzaSyDiyTC6xoWcnWb8qcOul04h4ZbhzDaJPts",
-    authDomain: "kolabo-todo-c4c83.firebaseapp.com",
-    projectId: "kolabo-todo-c4c83",
-    storageBucket: "kolabo-todo-c4c83.appspot.com",
-    messagingSenderId: "470755339490",
-    appId: "1:470755339490:web:cf858ba795d3a62c6a42bb"
+    apiKey: process.env.REACT_APP_F_API_KEY,
+    authDomain: process.env.REACT_APP_F_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_F_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_F_STORAGE_BUCKER,
+    messagingSenderId: process.env.REACT_APP_F_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_F_APP_ID,
   };
 
   firebase.initializeApp(firebaseConfig);
