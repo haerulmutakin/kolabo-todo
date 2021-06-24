@@ -17,6 +17,7 @@ const Core = () => {
 
     const getTasks = () => {
         taskRef
+            // .where('status', '==', 2)
             .orderBy('createdAt', 'asc')
             .onSnapshot((result) => {
                 const data = [];

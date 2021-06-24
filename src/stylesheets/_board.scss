@@ -17,6 +17,7 @@
         .add-task-label {
             cursor: pointer;
             color: #bdbdbd;
+            transition: color .5s;
             &:hover {
                 color: unset;
             }
@@ -27,5 +28,13 @@
         padding: 10px 0;
         height: calc(100vh - 120px);
         overflow-y: auto;
+    }
+}
+
+.add-button {
+    background: #f1f2f5 !important;
+    opacity: .7;
+    &:hover {
+        opacity: 1;
     }
 }

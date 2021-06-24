@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { IconButton, Icon } from 'rsuite';
+import { IconButton, Icon, Button } from 'rsuite';
 import firebaseDB from '../../_firebase-conf/firebase.config';
 import { AuthContext } from '../../_provider/AuthProvider';
 import Task from '../task/Task';
@@ -96,9 +96,10 @@ const Board = ({
                     </div>
                 }
                 {allowNewTask && <div className="add-task-container">
-                    <IconButton  onClick={handleNewTask}  icon={<Icon icon="data-increase" />} placement="left">
-                        New Task
-                    </IconButton>
+                    <Button className="add-button" onClick={handleNewTask}><Icon icon="data-increase" /> New task</Button>
+                    {/* <IconButton className="add-button"  onClick={handleNewTask}  icon={<Icon icon="data-increase" />} placement="left">
+                        New task
+                    </IconButton> */}
                 </div>}
                 
             </div>

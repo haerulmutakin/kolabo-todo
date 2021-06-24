@@ -1,5 +1,4 @@
 .task-container {
-    // border: 1px solid #ffffff;
     margin: 10px 0;
     position: relative;
 }
@@ -9,8 +8,12 @@
     border-radius: 4px;
     background: #ffffff;
     box-shadow: 0 1px 2px 1px rgba(0,0,0,.06);
+    transition: background .4s;
     &.editable {
         cursor: pointer;
+    }
+    &:hover {
+        background: #efefef;
     }
 }
 
