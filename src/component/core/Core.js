@@ -39,12 +39,14 @@ const Core = () => {
                     <Board
                         title="TODO"
                         allowNewTask={true}
+                        allowEditTask={true}
                         tasksData={openTasks}
                     />
                 </Col>
                 <Col md={6}>
                     <Board
                         title="PROGRESS"
+                        allowEditTask={true}
                         tasksData={progress}
                     />
                 </Col>
@@ -52,7 +54,7 @@ const Core = () => {
                     <Board
                         title="DONE"
                         tasksData={doneTasks}
-                        allowEditTask={false}
+                        allowEditTask={true}
                     />
                 </Col>
                 <Col md={6}>
